@@ -22,6 +22,12 @@ export const Header = () => {
               Document
             </a>
             <a
+              href="/debug"
+              className="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Debug
+            </a>
+            <a
               href="https://github.com/dorakemon/vc-holder-binding-playground"
               target="_blank"
               rel="noopener noreferrer"
