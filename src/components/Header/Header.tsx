@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GitHubIcon } from "../Icons";
 
 export const Header = () => {
@@ -9,32 +10,32 @@ export const Header = () => {
             Verifiable Credentials with USB Key
           </h1>
           <div className="flex items-center space-x-6">
-            <a
+            <Link
               href="/"
               className="text-gray-600 transition-colors hover:text-gray-900"
             >
               Demo
-            </a>
-            <a
+            </Link>
+            <Link
               href="/"
               className="text-gray-600 transition-colors hover:text-gray-900"
             >
               Document
-            </a>
-            <a
+            </Link>
+            <Link
               href="/debug"
               className="text-gray-600 transition-colors hover:text-gray-900"
             >
               Debug
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://github.com/dorakemon/vc-with-usb-key-playground"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 transition-colors hover:text-gray-900"
             >
               <GitHubIcon className="h-6 w-6" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
