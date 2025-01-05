@@ -27,38 +27,44 @@ export const Step2 = () => {
     }
   };
 
-  const { from, to, activeIndexes } = useMemo(() => {
+  const { from, to, activeIndexes, messages } = useMemo(() => {
     if (scene === "nonceFromIssuer") {
-      return { from: 2, to: 1, activeIndexes: [] };
+      return {
+        from: 2,
+        to: 1,
+        activeIndexes: [],
+        messages: [[], ["NONCE"]],
+      };
     }
     if (scene === "nonceFromBrowser") {
-      return { from: 1, to: 0, activeIndexes: [] };
+      return {
+        from: 1,
+        to: 0,
+        activeIndexes: [],
+        messages: [["NONCE"], ["NONCE"]],
+      };
     }
     if (scene === "nonceInDevice") {
-      return { from: 0, to: 0, activeIndexes: [0] };
+      return {
+        from: 0,
+        to: 0,
+        activeIndexes: [0],
+        messages: [["NONCE"], ["NONCE"]],
+      };
     }
-    return { from: 0, to: 0, activeIndexes: [] };
+    return { from: 0, to: 0, activeIndexes: [], messages: [] };
   }, [scene]);
 
-  /* <div className="w-full flex justify-center mt-8">
-    <button
-      onClick={handleSceneChange}
-      disabled={!isFirstScene && !isLastScene}
-      className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
-      type="button"
-    >
-      アニメーション開始
-    </button>
-  </div> */
   return (
     <AnimatedSVGLayout
       isAnimating={scene !== null || !isLastScene}
       onAnimationComplete={handleSceneChange}
       entities={VC_ENTITIES}
-      startIndex={from} // Square から
-      endIndex={to} // Circle へ
+      startIndex={from}
+      endIndex={to}
       className="w-full"
       activeIndexes={activeIndexes}
+      messages={messages}
     />
   );
 };

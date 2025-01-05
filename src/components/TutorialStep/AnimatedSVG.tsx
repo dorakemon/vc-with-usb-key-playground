@@ -5,6 +5,7 @@ export type AnimatedSVGLayoutProps = {
   isAnimating: boolean;
   onAnimationComplete: () => void;
   entities: React.ReactNode[];
+  messages?: string[][];
   startIndex: number;
   endIndex: number;
   activeIndexes?: number[]; // 追加: アクティブなインデックスの配列
@@ -22,13 +23,14 @@ export const AnimatedSVGLayout = ({
   isAnimating,
   onAnimationComplete,
   entities,
+  messages = [],
   startIndex,
   endIndex,
   activeIndexes = [],
   className = "",
   lineColor = "#D1D5DB", // gray-300
   dotColor = "#000000", // black
-  dotSize = 6, // px
+  dotSize = 12, // px
   lineWidth = 100, // px
   lineHeight = 2, // px
   entitySize = 60, // px
@@ -74,6 +76,8 @@ export const AnimatedSVGLayout = ({
   // Generate SVG and line elements
   const elements = entities.map((entity, index) => {
     const isActive = activeIndexes.includes(index);
+    const nodeMessages = messages[index] || [];
+
     return (
       <React.Fragment key={index}>
         <div className="flex-1 flex justify-center relative">
@@ -102,7 +106,7 @@ export const AnimatedSVGLayout = ({
             style={{ width: lineWidth }}
           >
             <div
-              className="w-full h-px relative"
+              className="w-full absolute top-0"
               style={{
                 backgroundColor: lineColor,
                 height: lineHeight,
@@ -134,6 +138,18 @@ export const AnimatedSVGLayout = ({
                 </AnimatePresence>
               )}
             </div>
+            {nodeMessages.length > 0 && (
+              <div className="absolute top-2 left-0 right-0 text-sm flex flex-col items-center font-bold">
+                {nodeMessages.map((message, msgIndex) => (
+                  <div
+                    key={msgIndex}
+                    className="text-gray-600 whitespace-nowrap"
+                  >
+                    - {message}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </React.Fragment>

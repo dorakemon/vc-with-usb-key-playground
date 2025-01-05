@@ -30,9 +30,10 @@ export const Step1 = () => {
         isAnimating={false}
         onAnimationComplete={() => {}}
         entities={VC_ENTITIES}
-        startIndex={0} // Square から
-        endIndex={0} // Circle へ
+        startIndex={0}
+        endIndex={0}
         className="w-full"
+        messages={[[], ["NONCE"]]}
       />
     </div>
   );
