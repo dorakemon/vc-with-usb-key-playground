@@ -1,13 +1,13 @@
 import { useHolderStore } from "@/stores/holder";
-import { Input } from "../UI/input";
 import { Label } from "../UI/label";
+import { Textarea } from "../UI/textarea";
 import { AnimatedSVGLayout } from "./AnimatedSVG";
 import { Scene4Config } from "./configs/step4";
 import { useSceneFlow } from "./configs/useSceneFlow";
 import { VC_ENTITIES } from "./entities";
 
 export const Step4 = () => {
-  const { commitment, proofOfCommitment } = useHolderStore();
+  const { vc } = useHolderStore();
 
   const { sceneKey, currentScene, toNextScene } = useSceneFlow(
     Scene4Config,
@@ -33,28 +33,18 @@ export const Step4 = () => {
         waitIndexes={waitIndexes}
         messages={messages}
       />
-      {sceneKey === "commitInIssuer" && (
-        <div>
-          <div className="space-y-2">
-            <Label htmlFor="commitment">Commitment</Label>
-            <Input
-              id="commitment"
-              value={commitment}
-              className="w-full"
-              readOnly
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="proofOfCommitment">Proof of Commitment</Label>
-            <Input
-              id="proofOfCommitment"
-              value={proofOfCommitment}
-              className="w-full"
-              readOnly
-            />
-          </div>
+      <div>
+        <div className="space-y-2">
+          <Label htmlFor="vc">Obtained VC</Label>
+          <Textarea
+            id="vc"
+            value={JSON.stringify(JSON.parse(vc), null, 4)}
+            className="w-full"
+            rows={10}
+            readOnly
+          />
         </div>
-      )}
+      </div>
     </div>
   );
 };

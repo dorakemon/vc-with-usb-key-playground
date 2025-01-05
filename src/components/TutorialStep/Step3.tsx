@@ -1,12 +1,15 @@
 import { useHolderStore } from "@/stores/holder";
+import { useIssuerStore } from "@/stores/issuer";
 import { Input } from "../UI/input";
 import { Label } from "../UI/label";
+import { Textarea } from "../UI/textarea";
 import { AnimatedSVGLayout } from "./AnimatedSVG";
 import { Scene3Config } from "./configs/step3";
 import { useSceneFlow } from "./configs/useSceneFlow";
 import { VC_ENTITIES } from "./entities";
 
 export const Step3 = () => {
+  const { vcDraft } = useIssuerStore();
   const { commitment, proofOfCommitment } = useHolderStore();
 
   const { sceneKey, currentScene, toNextScene } = useSceneFlow(
@@ -34,7 +37,7 @@ export const Step3 = () => {
         messages={messages}
       />
       {sceneKey === "commitInIssuer" && (
-        <div>
+        <div className="space-y-2">
           <div className="space-y-2">
             <Label htmlFor="commitment">Commitment</Label>
             <Input
@@ -50,6 +53,16 @@ export const Step3 = () => {
               id="proofOfCommitment"
               value={proofOfCommitment}
               className="w-full"
+              readOnly
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="vcdraft">VC Draft</Label>
+            <Textarea
+              id="vcdraft"
+              value={JSON.stringify(JSON.parse(vcDraft), null, 4)}
+              className="w-full"
+              rows={10}
               readOnly
             />
           </div>
