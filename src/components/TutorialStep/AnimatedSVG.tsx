@@ -7,6 +7,7 @@ export type AnimatedSVGLayoutProps = {
   entities: React.ReactNode[];
   startIndex: number;
   endIndex: number;
+  activeIndexes?: number[]; // 追加: アクティブなインデックスの配列
   className?: string;
   lineColor?: string;
   dotColor?: string;
@@ -23,6 +24,7 @@ export const AnimatedSVGLayout = ({
   entities,
   startIndex,
   endIndex,
+  activeIndexes = [],
   className = "",
   lineColor = "#D1D5DB", // gray-300
   dotColor = "#000000", // black
@@ -71,15 +73,26 @@ export const AnimatedSVGLayout = ({
 
   // Generate SVG and line elements
   const elements = entities.map((entity, index) => {
+    const isActive = activeIndexes.includes(index);
     return (
       <React.Fragment key={index}>
         <div className="flex-1 flex justify-center relative">
           <div
+            className="relative"
             style={{
               maxWidth: `${entitySize}px`,
               maxHeight: `${entitySize}px`,
             }}
           >
+            {/* animated active circle */}
+            {isActive && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute w-4 h-4 border-8 border-green-500 rounded-full placeholder-opacity-95" />
+                <div className="absolute w-8 h-8 border-2 border-green-500 rounded-full opacity-80">
+                  <div className="absolute inset-0 border-8 border-green-500 rounded-full animate-ping scale-50" />
+                </div>
+              </div>
+            )}
             {entity}
           </div>
         </div>
@@ -95,7 +108,6 @@ export const AnimatedSVGLayout = ({
                 height: lineHeight,
               }}
             >
-              {/* Only add animation container to the line between start and end indices */}
               {((isForward && index === startIndex) ||
                 (!isForward && index === endIndex)) && (
                 <AnimatePresence>

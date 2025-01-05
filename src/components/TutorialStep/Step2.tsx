@@ -1,12 +1,44 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { AnimatedSVGLayout } from "./AnimatedSVG";
 import { AuthenticatorEntity, BrowserEntity, ServerEntity } from "./entities";
 
 export const Step2 = () => {
-  const [isAnimating, setIsAnimating] = useState<0 | 1 | 2 | 3>(0);
-  const from = isAnimating === 1 ? 2 : 1;
-  const to = isAnimating === 1 ? 1 : 0;
+  const SCENE = [
+    "nonceFromIssuer",
+    "nonceFromBrowser",
+    "nonceInDevice",
+  ] as const;
+  const [scene, setScene] = useState<(typeof SCENE)[number] | null>(
+    "nonceFromIssuer",
+  );
+  const isFirstScene = scene === SCENE[0];
+  const isLastScene = scene === SCENE[SCENE.length - 1];
+
+  const handleSceneChange = () => {
+    if (scene === null) {
+      setScene("nonceFromIssuer");
+    } else if (scene === "nonceFromIssuer") {
+      setScene("nonceFromBrowser");
+    } else if (scene === "nonceFromBrowser") {
+      setScene("nonceInDevice");
+    } else if (scene === "nonceInDevice") {
+      setScene("nonceFromIssuer");
+    }
+  };
+
+  const { from, to, activeIndexes } = useMemo(() => {
+    if (scene === "nonceFromIssuer") {
+      return { from: 2, to: 1, activeIndexes: [] };
+    }
+    if (scene === "nonceFromBrowser") {
+      return { from: 1, to: 0, activeIndexes: [] };
+    }
+    if (scene === "nonceInDevice") {
+      return { from: 0, to: 0, activeIndexes: [0] };
+    }
+    return { from: 0, to: 0, activeIndexes: [] };
+  }, [scene]);
 
   const entities = [
     <AuthenticatorEntity key="0" />,
@@ -16,26 +48,25 @@ export const Step2 = () => {
 
   return (
     <>
+      {scene}
       <div className="w-full flex justify-center mt-8">
         <button
-          onClick={() => setIsAnimating(+1)}
-          disabled={isAnimating === 1 || isAnimating === 2}
+          onClick={handleSceneChange}
+          disabled={!isFirstScene && !isLastScene}
           className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
           type="button"
         >
           アニメーション開始
         </button>
       </div>
-
       <AnimatedSVGLayout
-        isAnimating={isAnimating !== 0}
-        onAnimationComplete={() =>
-          setIsAnimating((isAnimating + 1) as 0 | 1 | 2 | 3)
-        }
+        isAnimating={scene !== null || !isLastScene}
+        onAnimationComplete={handleSceneChange}
         entities={entities}
         startIndex={from} // Square から
         endIndex={to} // Circle へ
         className="w-full"
+        activeIndexes={activeIndexes}
       />
     </>
   );
