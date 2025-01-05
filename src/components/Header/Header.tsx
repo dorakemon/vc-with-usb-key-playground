@@ -28,7 +28,7 @@ export const Header = () => {
               Debug
             </a>
             <a
-              href="https://github.com/dorakemon/vc-holder-binding-playground"
+              href="https://github.com/dorakemon/vc-with-usb-key-playground"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 transition-colors hover:text-gray-900"
