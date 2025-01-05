@@ -3,7 +3,10 @@ import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
 import { Step4 } from "./Step4";
 
-export const SECTIONS = [
+export const SECTIONS: {
+  title: string;
+  steps: { title: string; description?: string; content: React.ReactNode }[];
+}[] = [
   {
     title: "Issue VC",
     steps: [
