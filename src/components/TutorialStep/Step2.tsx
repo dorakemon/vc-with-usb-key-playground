@@ -4,7 +4,7 @@ import { useSceneFlow } from "./configs/useSceneFlow";
 import { VC_ENTITIES } from "./entities";
 
 export const Step2 = () => {
-  const { currentScene, toNextScene } = useSceneFlow(
+  const { currentScene, toNextScene, isAnimating } = useSceneFlow(
     Scene2Config,
     "nonceFromIssuer",
   );
@@ -17,7 +17,7 @@ export const Step2 = () => {
 
   return (
     <AnimatedSVGLayout
-      isAnimating={true}
+      isAnimating={isAnimating}
       onAnimationComplete={handleSceneChange}
       entities={VC_ENTITIES}
       startIndex={from}

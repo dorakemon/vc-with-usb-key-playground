@@ -12,7 +12,7 @@ export const Step3 = () => {
   const { vcDraft } = useIssuerStore();
   const { commitment, proofOfCommitment } = useHolderStore();
 
-  const { sceneKey, currentScene, toNextScene } = useSceneFlow(
+  const { sceneKey, currentScene, toNextScene, isAnimating } = useSceneFlow(
     Scene3Config,
     "commitFromDevice",
   );
@@ -26,7 +26,7 @@ export const Step3 = () => {
   return (
     <div className="space-y-4">
       <AnimatedSVGLayout
-        isAnimating={true}
+        isAnimating={isAnimating}
         onAnimationComplete={handleSceneChange}
         entities={VC_ENTITIES}
         startIndex={from}

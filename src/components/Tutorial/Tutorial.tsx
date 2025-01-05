@@ -1,4 +1,5 @@
 import { SECTIONS } from "@/components/TutorialStep";
+import { useEffect, useRef } from "react";
 import { StepItem } from "./StepItem";
 
 interface TutorialProps {
@@ -8,6 +9,17 @@ interface TutorialProps {
 
 export const Tutorial = ({ currentStep, sections }: TutorialProps) => {
   let globalStepCount = 0;
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const targetStep = stepRefs.current[currentStep];
+    if (targetStep && currentStep > 0) {
+      targetStep.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [currentStep]);
 
   return (
     <div className="space-y-12">
@@ -21,16 +33,22 @@ export const Tutorial = ({ currentStep, sections }: TutorialProps) => {
             <div className="absolute left-4 top-8 bottom-4 w-px bg-gray-200" />
 
             {section.steps.map((step, stepIndex) => {
-              const stepNumber = ++globalStepCount;
-              const isCurrentStep = currentStep === stepNumber - 1;
+              const stepNumber = globalStepCount++;
+              const visibleItem = currentStep >= stepNumber;
               return (
-                <StepItem
+                <div
                   key={stepIndex}
-                  step={step}
-                  stepNumber={stepNumber}
-                  currentStep={currentStep}
-                  isCurrentStep={isCurrentStep}
-                />
+                  ref={(el) => {
+                    stepRefs.current[stepNumber] = el;
+                  }}
+                >
+                  <StepItem
+                    step={step}
+                    stepNumber={stepNumber + 1}
+                    currentStep={currentStep}
+                    visibleItem={visibleItem}
+                  />
+                </div>
               );
             })}
           </div>

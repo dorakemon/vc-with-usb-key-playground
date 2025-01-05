@@ -9,7 +9,7 @@ import { VC_ENTITIES } from "./entities";
 export const Step4 = () => {
   const { vc } = useHolderStore();
 
-  const { sceneKey, currentScene, toNextScene } = useSceneFlow(
+  const { currentScene, toNextScene, isAnimating } = useSceneFlow(
     Scene4Config,
     "vcFromIssuer",
   );
@@ -23,7 +23,7 @@ export const Step4 = () => {
   return (
     <div className="space-y-4">
       <AnimatedSVGLayout
-        isAnimating={true}
+        isAnimating={isAnimating}
         onAnimationComplete={handleSceneChange}
         entities={VC_ENTITIES}
         startIndex={from}

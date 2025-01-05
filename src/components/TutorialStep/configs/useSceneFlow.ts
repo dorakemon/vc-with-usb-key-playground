@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SceneConfig } from "./types";
 
 export function useSceneFlow<T extends Record<string, SceneConfig<string>>>(
@@ -6,6 +6,13 @@ export function useSceneFlow<T extends Record<string, SceneConfig<string>>>(
   initialKey: keyof T,
 ) {
   const [sceneKey, setSceneKey] = useState<keyof T>(initialKey);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsAnimating(true);
+    }, 1000);
+  }, []);
 
   const currentScene = flow[sceneKey];
 
@@ -22,5 +29,6 @@ export function useSceneFlow<T extends Record<string, SceneConfig<string>>>(
     currentScene,
     toNextScene,
     setSceneKey,
+    isAnimating,
   };
 }

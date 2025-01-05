@@ -10,14 +10,14 @@ interface StepItemProps {
   step: Step;
   stepNumber: number;
   currentStep: number;
-  isCurrentStep: boolean;
+  visibleItem: boolean;
 }
 
 export const StepItem = ({
   step,
   stepNumber,
   currentStep,
-  isCurrentStep,
+  visibleItem,
 }: StepItemProps) => {
   return (
     <div className="relative">
@@ -34,7 +34,7 @@ export const StepItem = ({
                     ? "bg-lab-blue-500 text-white"
                     : "bg-gray-200 text-gray-600"
               }
-              ${isCurrentStep ? "scale-110 ring-pulse-animation" : "scale-100"}
+              ${visibleItem ? "scale-110 ring-pulse-animation" : "scale-100"}
             `}
           >
             {stepNumber - 1 < currentStep ? (
@@ -62,7 +62,7 @@ export const StepItem = ({
             <p className="text-sm text-gray-500 mt-1">{step.description}</p>
           )}
 
-          {isCurrentStep && (
+          {visibleItem && (
             <div className="mt-2 text-gray-600 bg-white rounded-lg p-4 shadow-sm">
               {step.content}
             </div>
@@ -73,7 +73,7 @@ export const StepItem = ({
       {stepNumber - 1 <= currentStep && (
         <div
           className="absolute left-4 top-8 w-px bg-lab-blue-500 transition-all duration-500"
-          style={{ height: isCurrentStep ? "100%" : "100%" }}
+          style={{ height: visibleItem ? "100%" : "100%" }}
         />
       )}
     </div>
