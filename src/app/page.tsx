@@ -24,7 +24,7 @@ export default function Page() {
   return (
     <main className="flex-1 overflow-y-auto">
       <div className="max-w-4xl mx-auto px-4 py-8 pb-24">
-        <Tutorial currentStep={currentStep} />
+        <Tutorial currentStep={currentStep} sections={SECTIONS} />
         <NavigationButtons
           currentStep={currentStep}
           allStepLength={allSteps.length}

@@ -3,14 +3,15 @@ import { StepItem } from "./StepItem";
 
 interface TutorialProps {
   currentStep: number;
+  sections: typeof SECTIONS;
 }
 
-export const Tutorial = ({ currentStep }: TutorialProps) => {
+export const Tutorial = ({ currentStep, sections }: TutorialProps) => {
   let globalStepCount = 0;
 
   return (
     <div className="space-y-12">
-      {SECTIONS.map((section, sectionIndex) => (
+      {sections.map((section, sectionIndex) => (
         <div key={sectionIndex}>
           <h2 className="text-xl font-bold text-gray-800 mb-6">
             {section.title}
