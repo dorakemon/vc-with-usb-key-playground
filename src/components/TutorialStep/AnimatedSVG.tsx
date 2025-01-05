@@ -83,7 +83,7 @@ export const AnimatedSVGLayout = ({
 
     return (
       <React.Fragment key={index}>
-        <div className="flex-1 flex justify-center relative">
+        <div className="relative flex flex-1 justify-center">
           <div
             className="relative"
             style={{
@@ -94,9 +94,9 @@ export const AnimatedSVGLayout = ({
             {/* animated waiting circle */}
             {isWaiting && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="absolute w-4 h-4 border-8 border-green-500 rounded-full placeholder-opacity-95" />
-                <div className="absolute w-8 h-8 border-2 border-green-500 rounded-full opacity-80">
-                  <div className="absolute inset-0 border-8 border-green-500 rounded-full animate-ping scale-50" />
+                <div className="absolute h-4 w-4 rounded-full border-8 border-green-500 placeholder-opacity-95" />
+                <div className="absolute h-8 w-8 rounded-full border-2 border-green-500 opacity-80">
+                  <div className="absolute inset-0 scale-50 animate-ping rounded-full border-8 border-green-500" />
                 </div>
               </div>
             )}
@@ -105,11 +105,11 @@ export const AnimatedSVGLayout = ({
         </div>
         {index < entities.length - 1 && (
           <div
-            className="flex justify-center items-center z-0 relative"
+            className="relative z-0 flex items-center justify-center"
             style={{ width: lineWidth }}
           >
             <div
-              className="w-full absolute top-0"
+              className="absolute top-0 w-full"
               style={{
                 backgroundColor: lineColor,
                 height: lineHeight,
@@ -120,7 +120,7 @@ export const AnimatedSVGLayout = ({
                 <AnimatePresence>
                   {isAnimating && (
                     <motion.div
-                      className="absolute top-1/2 -translate-y-1/2"
+                      className="-translate-y-1/2 absolute top-1/2"
                       variants={circleVariants}
                       initial="initial"
                       animate="animate"
@@ -142,11 +142,11 @@ export const AnimatedSVGLayout = ({
               )}
             </div>
             {nodeMessages.length > 0 && (
-              <div className="absolute top-2 left-0 right-0 text-sm flex flex-col items-center font-bold">
+              <div className="absolute top-2 right-0 left-0 flex flex-col items-center font-bold text-sm">
                 {nodeMessages.map((message, msgIndex) => (
                   <div
                     key={msgIndex}
-                    className="text-gray-600 whitespace-nowrap"
+                    className="whitespace-nowrap text-gray-600"
                   >
                     - {message}
                   </div>
@@ -161,7 +161,7 @@ export const AnimatedSVGLayout = ({
 
   return (
     <div className={className}>
-      <div className="w-full h-48 flex justify-between items-center relative">
+      <div className="relative flex h-48 w-full items-center justify-between">
         {elements}
       </div>
     </div>

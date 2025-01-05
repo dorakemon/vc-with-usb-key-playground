@@ -78,49 +78,49 @@ const BbsDemo = () => {
 
   return (
     <main className="flex-1 overflow-y-auto">
-      <div className="max-w-2xl flex flex-col items-start gap-5 mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold">BBS on USB Key Demo</h1>
+      <div className="mx-auto flex max-w-2xl flex-col items-start gap-5 px-4 py-8">
+        <h1 className="font-bold text-2xl">BBS on USB Key Demo</h1>
         <button
           onClick={connectHandler}
-          className="w-32 px-4 py-2 bg-lab-blue-500 text-white rounded"
+          className="w-32 rounded bg-lab-blue-500 px-4 py-2 text-white"
           type="button"
         >
           Connect
         </button>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex w-full flex-col gap-2">
           <label htmlFor="bbs-commitment" className="font-semibold">
             BBS Commitment
           </label>
           <button
             id="bbs-commitment"
             onClick={bbsCommitmentHandler}
-            className="px-4 py-2 bg-lab-pink-500 text-white rounded"
+            className="w-48 rounded bg-lab-pink-500 px-4 py-2 text-white"
             type="button"
           >
             BBS Commitment
           </button>
-          <div>
+          <div className="w-full">
             <label
-              className="block mt-2 font-medium"
+              className="mt-2 block font-medium"
               htmlFor="bbs-commitment-commitment"
             >
               Commitment
             </label>
             <Textarea
               id="bbs-commitment-commitment"
-              className="w-full"
+              className="w-full resize-none"
               value={bbsCommitment || ""}
               readOnly
             />
             <label
-              className="block mt-2 font-medium"
+              className="mt-2 block font-medium"
               htmlFor="bbs-commitment-blind-factor"
             >
               Blind Factor
             </label>
             <Textarea
-              className="w-full"
+              className="w-full resize-none"
               id="bbs-commitment-blind-factor"
               value={bbsCommitmentBlindFactor || ""}
               readOnly
@@ -128,18 +128,22 @@ const BbsDemo = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex w-full flex-col gap-2">
           <label className="font-semibold" htmlFor="bbs-proof">
             BBS Proof
           </label>
           <button
             onClick={bbsProofHandler}
-            className="px-4 py-2 bg-lab-pink-500 text-white rounded"
+            className="w-48 rounded bg-lab-pink-500 px-4 py-2 text-white"
             type="button"
           >
             BBS Proof
           </button>
-          <Textarea className="w-full" value={bbsProof || ""} readOnly />
+          <Textarea
+            className="w-full resize-none"
+            value={bbsProof || ""}
+            readOnly
+          />
         </div>
       </div>
     </main>

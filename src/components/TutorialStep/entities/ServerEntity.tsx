@@ -9,7 +9,7 @@ export const ServerEntity = ({ active = false }: Props) => (
   <BaseEntity
     icon={
       <ServerIcon
-        className={`w-full h-full ${active && "fill-lab-pink-500"}`}
+        className={`h-full w-full ${active && "fill-lab-pink-500"}`}
       />
     }
     title="Issuer"

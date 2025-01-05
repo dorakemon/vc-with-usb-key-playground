@@ -25,12 +25,12 @@ export const Tutorial = ({ currentStep, sections }: TutorialProps) => {
     <div className="space-y-12">
       {sections.map((section, sectionIndex) => (
         <div key={sectionIndex}>
-          <h2 className="text-xl font-bold text-gray-800 mb-6">
+          <h2 className="mb-6 font-bold text-gray-800 text-xl">
             {section.title}
           </h2>
           <div className="relative space-y-8">
             {/* Vertical Line */}
-            <div className="absolute left-4 top-8 bottom-4 w-px bg-gray-200" />
+            <div className="absolute top-8 bottom-4 left-4 w-px bg-gray-200" />
 
             {section.steps.map((step, stepIndex) => {
               const stepNumber = globalStepCount++;

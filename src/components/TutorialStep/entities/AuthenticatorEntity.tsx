@@ -9,7 +9,7 @@ export const AuthenticatorEntity = ({ active = false }: Props) => (
   <BaseEntity
     icon={
       <AuthenticatorIcon
-        className={`w-full h-full ${active && "fill-lab-pink-500"}`}
+        className={`h-full w-full ${active && "fill-lab-pink-500"}`}
       />
     }
     title="Authenticator"

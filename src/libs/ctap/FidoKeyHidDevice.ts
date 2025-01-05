@@ -6,15 +6,15 @@ export class FIDOKeyHIDDevice {
   }
 
   async open() {
-    if (!this.device.opened)
-      await this.device.open();
+    if (!this.device.opened) await this.device.open();
   }
 
-  static async listDevices(vendorId: number, productId: number): Promise<HIDDevice[]> {
+  static async listDevices(
+    vendorId: number,
+    productId: number,
+  ): Promise<HIDDevice[]> {
     return await navigator.hid.requestDevice({
-      filters: [
-        { vendorId, productId }
-      ]
+      filters: [{ vendorId, productId }],
     });
   }
 

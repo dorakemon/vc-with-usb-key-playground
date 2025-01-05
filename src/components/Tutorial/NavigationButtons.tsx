@@ -14,19 +14,16 @@ export const NavigationButtons = ({
   prevStep,
 }: NavigationButtonsProps) => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
-      <div className="max-w-3xl mx-auto flex justify-between">
+    <div className="fixed right-0 bottom-0 left-0 border-gray-200 border-t bg-white p-4">
+      <div className="mx-auto flex max-w-3xl justify-between">
         <button
           onClick={prevStep}
           disabled={currentStep === 0}
-          className={`
-            px-4 py-2 rounded-md
-            transition-all duration-200
-            ${
-              currentStep === 0
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-lab-blue-500 text-white hover:bg-lab-blue-700"
-            }
+          className={`rounded-md px-4 py-2 transition-all duration-200 ${
+            currentStep === 0
+              ? "cursor-not-allowed bg-gray-200 text-gray-400"
+              : "bg-lab-blue-500 text-white hover:bg-lab-blue-700"
+          }
           `}
           type="button"
         >
@@ -36,14 +33,11 @@ export const NavigationButtons = ({
         <button
           onClick={nextStep}
           disabled={currentStep === allStepLength - 1}
-          className={`
-            px-4 py-2 rounded-md
-            transition-all duration-200
-            ${
-              currentStep === allStepLength - 1
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-lab-blue-500 text-white hover:bg-lab-blue-700"
-            }
+          className={`rounded-md px-4 py-2 transition-all duration-200 ${
+            currentStep === allStepLength - 1
+              ? "cursor-not-allowed bg-gray-200 text-gray-400"
+              : "bg-lab-blue-500 text-white hover:bg-lab-blue-700"
+          }
           `}
           type="button"
         >

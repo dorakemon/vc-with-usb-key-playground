@@ -26,44 +26,39 @@ export const StepItem = ({
       <div className="flex">
         <div className="relative">
           <div
-            className={`
-              w-8 h-8 rounded-full flex items-center justify-center
-              transition-all duration-500 transform z-10
-              ${
-                isPastStep
-                  ? "bg-green-500 text-white"
-                  : stepNumber - 1 === currentStep
-                    ? "bg-lab-blue-500 text-white"
-                    : "bg-gray-200 text-gray-600"
-              }
+            className={`z-10 flex h-8 w-8 transform items-center justify-center rounded-full transition-all duration-500 ${
+              isPastStep
+                ? "bg-green-500 text-white"
+                : stepNumber - 1 === currentStep
+                  ? "bg-lab-blue-500 text-white"
+                  : "bg-gray-200 text-gray-600"
+            }
               ${visibleItem ? "scale-110 ring-pulse-animation" : "scale-100"}
             `}
           >
-            {isPastStep ? <Check className="w-4 h-4" /> : stepNumber}
+            {isPastStep ? <Check className="h-4 w-4" /> : stepNumber}
           </div>
         </div>
 
         <div className="ml-4 flex-1">
           <h3
-            className={`font-medium text-lg transition-colors duration-500 
-              ${
-                isPastStep
-                  ? "text-green-500"
-                  : stepNumber - 1 === currentStep
-                    ? "text-lab-blue-600"
-                    : "text-gray-500"
-              }`}
+            className={`font-medium text-lg transition-colors duration-500 ${
+              isPastStep
+                ? "text-green-500"
+                : stepNumber - 1 === currentStep
+                  ? "text-lab-blue-600"
+                  : "text-gray-500"
+            }`}
           >
             {step.title}
           </h3>
           {step.description && (
-            <p className="text-sm text-gray-500 mt-1">{step.description}</p>
+            <p className="mt-1 text-gray-500 text-sm">{step.description}</p>
           )}
 
           {visibleItem && (
             <div
-              className={`mt-2 text-gray-600 bg-white rounded-lg p-4 shadow-sm
-                ${isPastStep ? "bg-opacity-30" : ""}`}
+              className={`mt-2 rounded-lg bg-white p-4 text-gray-600 shadow-sm ${isPastStep ? "bg-opacity-30" : ""}`}
             >
               {step.content}
             </div>
@@ -73,7 +68,7 @@ export const StepItem = ({
 
       {stepNumber - 1 <= currentStep && (
         <div
-          className="absolute left-4 top-8 w-px bg-lab-blue-500 transition-all duration-500"
+          className="absolute top-8 left-4 w-px bg-lab-blue-500 transition-all duration-500"
           style={{ height: visibleItem ? "100%" : "100%" }}
         />
       )}

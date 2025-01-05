@@ -9,7 +9,7 @@ export const BrowserEntity = ({ active = false }: Props) => (
   <BaseEntity
     icon={
       <BrowserIcon
-        className={`w-full h-full ${active && "fill-lab-pink-500"}`}
+        className={`h-full w-full ${active && "fill-lab-pink-500"}`}
       />
     }
     title="Browser"
