@@ -4,11 +4,12 @@ import React from "react";
 export type AnimatedSVGLayoutProps = {
   isAnimating: boolean;
   onAnimationComplete: () => void;
-  entities: React.ReactNode[];
+  entities: Array<(active: boolean) => React.ReactNode>;
   messages?: string[][];
   startIndex: number;
   endIndex: number;
-  activeIndexes?: number[]; // 追加: アクティブなインデックスの配列
+  activeIndexes?: number[];
+  waitIndexes?: number[];
   className?: string;
   lineColor?: string;
   dotColor?: string;
@@ -27,6 +28,7 @@ export const AnimatedSVGLayout = ({
   startIndex,
   endIndex,
   activeIndexes = [],
+  waitIndexes = [],
   className = "",
   lineColor = "#D1D5DB", // gray-300
   dotColor = "#000000", // black
@@ -75,6 +77,7 @@ export const AnimatedSVGLayout = ({
 
   // Generate SVG and line elements
   const elements = entities.map((entity, index) => {
+    const isWaiting = waitIndexes.includes(index);
     const isActive = activeIndexes.includes(index);
     const nodeMessages = messages[index] || [];
 
@@ -88,8 +91,8 @@ export const AnimatedSVGLayout = ({
               maxHeight: `${entitySize}px`,
             }}
           >
-            {/* animated active circle */}
-            {isActive && (
+            {/* animated waiting circle */}
+            {isWaiting && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="absolute w-4 h-4 border-8 border-green-500 rounded-full placeholder-opacity-95" />
                 <div className="absolute w-8 h-8 border-2 border-green-500 rounded-full opacity-80">
@@ -97,7 +100,7 @@ export const AnimatedSVGLayout = ({
                 </div>
               </div>
             )}
-            {entity}
+            {entity(isActive)}
           </div>
         </div>
         {index < entities.length - 1 && (

@@ -1,6 +1,18 @@
 import { ServerIcon } from "@/components/Icons";
 import { BaseEntity } from "./BaseEntity";
 
-export const ServerEntity = () => (
-  <BaseEntity icon={<ServerIcon width="100%" height="100%" />} title="Issuer" />
+export type Props = {
+  active?: boolean;
+};
+
+export const ServerEntity = ({ active = false }: Props) => (
+  <BaseEntity
+    icon={
+      <ServerIcon
+        className={`w-full h-full ${active && "fill-lab-pink-500"}`}
+      />
+    }
+    title="Issuer"
+    active={active}
+  />
 );

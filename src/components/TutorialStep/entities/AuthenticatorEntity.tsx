@@ -1,9 +1,18 @@
 import { AuthenticatorIcon } from "@/components/Icons";
 import { BaseEntity } from "./BaseEntity";
 
-export const AuthenticatorEntity = () => (
+export type Props = {
+  active?: boolean;
+};
+
+export const AuthenticatorEntity = ({ active = false }: Props) => (
   <BaseEntity
-    icon={<AuthenticatorIcon width="100%" height="100%" />}
+    icon={
+      <AuthenticatorIcon
+        className={`w-full h-full ${active && "fill-lab-pink-500"}`}
+      />
+    }
     title="Authenticator"
+    active={active}
   />
 );

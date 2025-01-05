@@ -33,6 +33,7 @@ export const Step1 = () => {
         startIndex={0}
         endIndex={0}
         className="w-full"
+        activeIndexes={[2]}
         messages={[[], ["NONCE"]]}
       />
     </div>

@@ -3,7 +3,7 @@ import { BrowserEntity } from "./BrowserEntity";
 import { ServerEntity } from "./ServerEntity";
 
 export const VC_ENTITIES = [
-  <AuthenticatorEntity key="0" />,
-  <BrowserEntity key="1" />,
-  <ServerEntity key="2" />,
+  (active: boolean) => <AuthenticatorEntity key="0" active={active} />,
+  (active: boolean) => <BrowserEntity key="1" active={active} />,
+  (active: boolean) => <ServerEntity key="2" active={active} />,
 ];
