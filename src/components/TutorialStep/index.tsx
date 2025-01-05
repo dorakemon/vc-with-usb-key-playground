@@ -1,5 +1,7 @@
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
+import { Step3 } from "./Step3";
+import { Step4 } from "./Step4";
 
 export const SECTIONS = [
   {
@@ -17,12 +19,12 @@ export const SECTIONS = [
         content: <Step2 />,
       },
       {
-        title: "[Issuer] Issue VC",
-        content: "temp",
+        title: "Send Commitment to Issuer",
+        content: <Step3 />,
       },
       {
-        title: "[Client] Obtain VC",
-        content: "temp",
+        title: "[Issuer] Issue VC",
+        content: <Step4 />,
       },
     ],
   },

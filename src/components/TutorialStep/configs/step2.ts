@@ -1,11 +1,11 @@
 import { SceneConfig } from "./types";
 
-export type SceneKey1 =
+export type Scene2Key =
   | "nonceFromIssuer"
   | "nonceFromBrowser"
   | "nonceInDevice";
 
-export const scene1Flow: Record<SceneKey1, SceneConfig<SceneKey1>> = {
+export const Scene2Config: Record<Scene2Key, SceneConfig<Scene2Key>> = {
   nonceFromIssuer: {
     from: 2,
     to: 1,

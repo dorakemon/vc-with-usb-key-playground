@@ -1,11 +1,11 @@
 import { AnimatedSVGLayout } from "./AnimatedSVG";
-import { scene1Flow } from "./configs/step2";
+import { Scene2Config } from "./configs/step2";
 import { useSceneFlow } from "./configs/useSceneFlow";
 import { VC_ENTITIES } from "./entities";
 
 export const Step2 = () => {
-  const { sceneKey, currentScene, toNextScene } = useSceneFlow(
-    scene1Flow,
+  const { currentScene, toNextScene } = useSceneFlow(
+    Scene2Config,
     "nonceFromIssuer",
   );
 
