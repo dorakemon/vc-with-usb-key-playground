@@ -1,8 +1,9 @@
-import { CardContent } from "@/components/UI/card";
 import { Input } from "@/components/UI/input";
 import { Label } from "@/components/UI/label";
 import { useIssuerStore } from "@/stores/issuer";
 import React from "react";
+import { AnimatedSVGLayout } from "./AnimatedSVG";
+import { VC_ENTITIES } from "./entities";
 
 export const Step1 = () => {
   const { issueNonce, setIssueNonce } = useIssuerStore();
@@ -12,7 +13,7 @@ export const Step1 = () => {
   };
 
   return (
-    <CardContent>
+    <div>
       <div className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="nonce">Nonce</Label>
@@ -25,6 +26,14 @@ export const Step1 = () => {
           />
         </div>
       </div>
-    </CardContent>
+      <AnimatedSVGLayout
+        isAnimating={false}
+        onAnimationComplete={() => {}}
+        entities={VC_ENTITIES}
+        startIndex={0} // Square から
+        endIndex={0} // Circle へ
+        className="w-full"
+      />
+    </div>
   );
 };
