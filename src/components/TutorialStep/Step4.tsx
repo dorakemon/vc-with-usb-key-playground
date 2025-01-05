@@ -9,7 +9,7 @@ import { VC_ENTITIES } from "./entities";
 export const Step4 = () => {
   const { vc } = useHolderStore();
 
-  const { currentScene, toNextScene, isAnimating } = useSceneFlow(
+  const { sceneKey, currentScene, toNextScene, isAnimating } = useSceneFlow(
     Scene4Config,
     "vcFromIssuer",
   );
@@ -33,7 +33,7 @@ export const Step4 = () => {
         waitIndexes={waitIndexes}
         messages={messages}
       />
-      <div>
+      {sceneKey === "vcInBrowser" && (
         <div className="space-y-2">
           <Label htmlFor="vc">Obtained VC</Label>
           <Textarea
@@ -44,7 +44,7 @@ export const Step4 = () => {
             readOnly
           />
         </div>
-      </div>
+      )}
     </div>
   );
 };
