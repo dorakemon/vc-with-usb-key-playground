@@ -1,26 +1,17 @@
 import { useState } from "react";
 
-import { AuthenticatorIcon, BrowserIcon, ServerIcon } from "../Icons";
 import { AnimatedSVGLayout } from "./AnimatedSVG";
+import { AuthenticatorEntity, BrowserEntity, ServerEntity } from "./entities";
 
 export const Step2 = () => {
   const [isAnimating, setIsAnimating] = useState<0 | 1 | 2 | 3>(0);
   const from = isAnimating === 1 ? 2 : 1;
   const to = isAnimating === 1 ? 1 : 0;
 
-  const svgItems = [
-    {
-      component: AuthenticatorIcon,
-      props: { className: "text-blue-500" },
-    },
-    {
-      component: BrowserIcon,
-      props: { className: "text-green-500" },
-    },
-    {
-      component: ServerIcon,
-      props: { className: "text-purple-500" },
-    },
+  const entities = [
+    <AuthenticatorEntity key="0" />,
+    <BrowserEntity key="1" />,
+    <ServerEntity key="2" />,
   ];
 
   return (
@@ -41,7 +32,7 @@ export const Step2 = () => {
         onAnimationComplete={() =>
           setIsAnimating((isAnimating + 1) as 0 | 1 | 2 | 3)
         }
-        svgItems={svgItems}
+        entities={entities}
         startIndex={from} // Square から
         endIndex={to} // Circle へ
         className="w-full"

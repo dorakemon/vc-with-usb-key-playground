@@ -1,15 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 
-export type SVGItem = {
-  component: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-  props?: React.PropsWithoutRef<React.SVGProps<SVGSVGElement>>;
-};
-
 export type AnimatedSVGLayoutProps = {
   isAnimating: boolean;
   onAnimationComplete: () => void;
-  svgItems: SVGItem[];
+  entities: React.ReactNode[];
   startIndex: number;
   endIndex: number;
   className?: string;
@@ -18,14 +13,14 @@ export type AnimatedSVGLayoutProps = {
   dotSize?: number;
   lineWidth?: number;
   lineHeight?: number;
-  svgSize?: number;
+  entitySize?: number;
   animationDuration?: number;
 };
 
 export const AnimatedSVGLayout = ({
   isAnimating,
   onAnimationComplete,
-  svgItems,
+  entities,
   startIndex,
   endIndex,
   className = "",
@@ -34,15 +29,15 @@ export const AnimatedSVGLayout = ({
   dotSize = 6, // px
   lineWidth = 100, // px
   lineHeight = 2, // px
-  svgSize = 60, // px
+  entitySize = 60, // px
   animationDuration = 1.0,
 }: AnimatedSVGLayoutProps) => {
   // Validate indices
   if (
     startIndex < 0 ||
     endIndex < 0 ||
-    startIndex >= svgItems.length ||
-    endIndex >= svgItems.length
+    startIndex >= entities.length ||
+    endIndex >= entities.length
   ) {
     console.error("Invalid start or end index");
     return null;
@@ -75,14 +70,20 @@ export const AnimatedSVGLayout = ({
   };
 
   // Generate SVG and line elements
-  const elements = svgItems.map((item, index) => {
-    const SVGComponent = item.component;
+  const elements = entities.map((entity, index) => {
     return (
       <React.Fragment key={index}>
         <div className="flex-1 flex justify-center relative">
-          <SVGComponent width={svgSize} height={svgSize} {...item.props} />
+          <div
+            style={{
+              maxWidth: `${entitySize}px`,
+              maxHeight: `${entitySize}px`,
+            }}
+          >
+            {entity}
+          </div>
         </div>
-        {index < svgItems.length - 1 && (
+        {index < entities.length - 1 && (
           <div
             className="flex justify-center items-center z-0 relative"
             style={{ width: lineWidth }}
