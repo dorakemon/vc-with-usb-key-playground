@@ -1,4 +1,4 @@
-import { GitHubIcon } from "../Icons/GitHubIcon";
+import { GitHubIcon } from "../Icons";
 
 export const Header = () => {
   return (

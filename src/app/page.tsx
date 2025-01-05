@@ -1,5 +1,6 @@
 "use client";
 import { Header } from "@/components/Header/Header";
+import { Step1, Step2 } from "@/components/TutorialStep";
 import { Check } from "lucide-react";
 import { useState } from "react";
 
@@ -13,13 +14,12 @@ const Page = () => {
         {
           title: "[Issuer] Request Commitment",
           description: "Request a commitment from the Holder's Private Key",
-          content:
-            "Welcome to our tutorial! This guide will help you learn step by step. Here you will find all the necessary information to get started with our platform.",
+          content: <Step1 />,
         },
         {
           title: "[Authenticator] Generate Commitment",
           description: "Generate a commitment for the Holder's Private Key",
-          content: "temp",
+          content: <Step2 />,
         },
         {
           title: "[Issuer] Issue VC",
