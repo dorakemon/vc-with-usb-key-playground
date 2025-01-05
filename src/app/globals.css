@@ -2,20 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes ring-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
   }
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.ring-pulse-animation {
+  animation: ring-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
