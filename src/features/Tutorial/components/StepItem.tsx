@@ -56,13 +56,7 @@ export const StepItem = ({
             <p className="mt-1 text-gray-500 text-sm">{step.description}</p>
           )}
 
-          {visibleItem && (
-            <div
-              className={`mt-2 rounded-lg bg-white p-4 text-gray-600 shadow-sm ${isPastStep ? "bg-opacity-30" : ""}`}
-            >
-              {step.content}
-            </div>
-          )}
+          {visibleItem && step.content}
         </div>
       </div>
 

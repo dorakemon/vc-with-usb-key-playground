@@ -1,6 +1,6 @@
-import { SECTIONS } from "@/components/TutorialStep";
+import { SECTIONS } from "@/features/TutorialStep";
 import { useEffect, useRef } from "react";
-import { StepItem } from "./StepItem";
+import { StepItem } from "./components/StepItem";
 
 interface TutorialProps {
   currentStep: number;
