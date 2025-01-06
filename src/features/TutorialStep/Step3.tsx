@@ -1,8 +1,8 @@
 import { useHolderStore } from "@/stores/holder";
 import { useIssuerStore } from "@/stores/issuer";
-import { Input } from "../UI/input";
-import { Label } from "../UI/label";
-import { Textarea } from "../UI/textarea";
+import { Input } from "../../components/UI/input";
+import { Label } from "../../components/UI/label";
+import { Textarea } from "../../components/UI/textarea";
 import { AnimatedSVGLayout } from "./AnimatedSVG";
 import { Scene3Config } from "./configs/step3";
 import { useSceneFlow } from "./configs/useSceneFlow";

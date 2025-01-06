@@ -1,6 +1,6 @@
 import { useHolderStore } from "@/stores/holder";
-import { Label } from "../UI/label";
-import { Textarea } from "../UI/textarea";
+import { Label } from "../../components/UI/label";
+import { Textarea } from "../../components/UI/textarea";
 import { AnimatedSVGLayout } from "./AnimatedSVG";
 import { Scene4Config } from "./configs/step4";
 import { useSceneFlow } from "./configs/useSceneFlow";

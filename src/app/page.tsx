@@ -1,8 +1,7 @@
 "use client";
 
-import { NavigationButtons } from "@/components/Tutorial/NavigationButtons";
-import { Tutorial } from "@/components/Tutorial/Tutorial";
-import { SECTIONS } from "@/components/TutorialStep";
+import { Tutorial } from "@/features/Tutorial/Tutorial";
+import { SECTIONS } from "@/features/TutorialStep";
 import { useState } from "react";
 
 export default function Page() {
@@ -25,12 +24,6 @@ export default function Page() {
     <main className="flex-1 overflow-y-auto">
       <div className="mx-auto max-w-4xl px-4 py-8 pb-24">
         <Tutorial currentStep={currentStep} sections={SECTIONS} />
-        <NavigationButtons
-          currentStep={currentStep}
-          allStepLength={allSteps.length}
-          nextStep={nextStep}
-          prevStep={prevStep}
-        />
       </div>
     </main>
   );
